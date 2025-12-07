@@ -93,12 +93,12 @@ const config: Config = {
               to: '/docs/book/chapters/module-2-simulation/',
             },
             {
-              label: 'Module 3: Advanced Control',
-              to: '/docs/book/chapters/module-3-advanced-control/',
+              label: 'Module 3: Sensors & Perception',
+              to: '/docs/book/chapters/module-3-sensors/',
             },
             {
-              label: 'Module 4: VLAs & Deployment',
-              to: '/docs/book/chapters/module-4-vlas/',
+              label: 'Module 4: Advanced Topics',
+              to: '/docs/book/chapters/module-4-advanced/',
             },
           ],
         },
