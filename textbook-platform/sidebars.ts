@@ -7,13 +7,13 @@ const sidebars: SidebarsConfig = {
       label: 'Module 1: ROS 2 Foundations',
       link: {
         type: 'doc',
-        id: 'book/chapters/module-1-ros2/index',
+        id: 'book/module-1-ros2/index',
       },
       items: [
-        'book/chapters/module-1-ros2/week-01-intro-physical-ai',
-        'book/chapters/module-1-ros2/week-02-humanoid-fundamentals',
-        'book/chapters/module-1-ros2/week-03-ros2-architecture',
-        'book/chapters/module-1-ros2/week-04-ros2-nodes-topics',
+        'book/module-1-ros2/week-01-intro-physical-ai',
+        'book/module-1-ros2/week-02-humanoid-fundamentals',
+        'book/module-1-ros2/week-03-ros2-architecture',
+        'book/module-1-ros2/week-04-ros2-nodes-topics',
       ],
     },
     {
@@ -21,12 +21,12 @@ const sidebars: SidebarsConfig = {
       label: 'Module 2: Simulation Environments',
       link: {
         type: 'doc',
-        id: 'book/chapters/module-2-simulation/index',
+        id: 'book/module-2-simulation/index',
       },
       items: [
-        'book/chapters/module-2-simulation/week-05-gazebo-basics',
-        'book/chapters/module-2-simulation/week-06-unity-robotics',
-        'book/chapters/module-2-simulation/week-07-nvidia-isaac',
+        'book/module-2-simulation/week-05-gazebo-basics',
+        'book/module-2-simulation/week-06-unity-robotics',
+        'book/module-2-simulation/week-07-nvidia-isaac',
       ],
     },
     {
@@ -34,11 +34,11 @@ const sidebars: SidebarsConfig = {
       label: 'Module 3: Sensors & AI Integration',
       link: {
         type: 'doc',
-        id: 'book/chapters/module-3-sensors/index',
+        id: 'book/module-3-sensors/index',
       },
       items: [
-        'book/chapters/module-3-sensors/week-08-sensor-integration',
-        'book/chapters/module-3-sensors/week-09-vision-language-action',
+        'book/module-3-sensors/week-08-sensor-integration',
+        'book/module-3-sensors/week-09-vision-language-action',
       ],
     },
     {
@@ -46,13 +46,13 @@ const sidebars: SidebarsConfig = {
       label: 'Module 4: Advanced Humanoid Robotics',
       link: {
         type: 'doc',
-        id: 'book/chapters/module-4-advanced/index',
+        id: 'book/module-4-advanced/index',
       },
       items: [
-        'book/chapters/module-4-advanced/week-10-conversational-ai',
-        'book/chapters/module-4-advanced/week-11-humanoid-locomotion',
-        'book/chapters/module-4-advanced/week-12-inverse-kinematics',
-        'book/chapters/module-4-advanced/week-13-capstone-project',
+        'book/module-4-advanced/week-10-conversational-ai',
+        'book/module-4-advanced/week-11-humanoid-locomotion',
+        'book/module-4-advanced/week-12-inverse-kinematics',
+        'book/module-4-advanced/week-13-capstone-project',
       ],
     },
   ],

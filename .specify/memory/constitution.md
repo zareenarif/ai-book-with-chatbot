@@ -16,6 +16,34 @@ Follow-up TODOs: None
 
 # Physical AI & Humanoid Robotics Textbook Constitution
 
+## Project Context
+
+This Docusaurus book project includes a fully integrated RAG Chatbot powered by AI agents.
+
+**RAG Chatbot Requirements:**
+- FastAPI backend for API endpoints
+- OpenAI Agents / ChatKit SDK for conversational AI
+- Qdrant Cloud Free Tier for vector embeddings and semantic search
+- Neon Serverless Postgres for user accounts and chat history
+- BetterAuth for authentication (signup/signin flows)
+- Claude Code Subagents + Agent Skills for reusable intelligence
+- Chatbot MUST answer only from book content (no hallucinations)
+- Highlighted text on any page MUST be answerable by chatbot
+- Bonus features: personalization per chapter, Urdu translation buttons
+
+**Agent Architecture:**
+- **RAG-Agent**: Handles embedding generation, semantic search, and retrieval from Qdrant
+- **UI-Agent**: Manages frontend integration with Docusaurus and chatbot UI components
+- **Auth-Agent**: Manages BetterAuth integration and Neon DB operations for user management
+- **Skill-Agent**: Provides reusable intelligence modules and shared capabilities
+
+**Development Standards:**
+- Clean, modular folder structure
+- Fully executable FastAPI applications with proper error handling
+- ROS 2 Humble compatible code examples
+- Follow Specify → Plan → Tasks → Implement workflow
+- All chatbot responses MUST be grounded in book content only
+
 ## Core Principles
 
 ### I. Academic Excellence & Pedagogical Rigor
@@ -200,4 +228,8 @@ Each lesson MUST follow this structure:
 - Deviations MUST be explicitly documented and approved
 - See `CLAUDE.md` for AI assistant runtime guidance (implementation details, execution flow, PHR creation)
 
-**Version**: 1.0.0 | **Ratified**: 2025-12-07 | **Last Amended**: 2025-12-07
+**Version**: 1.1.0 | **Ratified**: 2025-12-07 | **Last Amended**: 2025-12-10
+
+**Amendment History:**
+- **1.1.0** (2025-12-10): Added RAG Chatbot integration requirements, agent architecture specifications, and development standards for AI-powered features
+- **1.0.0** (2025-12-07): Initial constitution ratification

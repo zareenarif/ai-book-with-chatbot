@@ -22,7 +22,7 @@ export default function Home(): JSX.Element {
           <div className="flex space-x-4">
             <Link
               className="bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors no-underline"
-              to="/docs/book/chapters/module-1-ros2/">
+              to="/docs/book/module-1-ros2/">
               Start Learning
             </Link>
             <Link
@@ -49,7 +49,7 @@ export default function Home(): JSX.Element {
             title="ROS 2 Foundations"
             description="Introduction to Physical AI, Humanoid Robotics, and ROS 2 architecture. Learn core concepts, nodes, topics, and communication patterns."
             lessonCount={4}
-            href="/docs/book/chapters/module-1-ros2/"
+            href="/docs/book/module-1-ros2/"
             topics={['Physical AI', 'ROS 2', 'Pub/Sub', 'Services']}
           />
 
@@ -58,7 +58,7 @@ export default function Home(): JSX.Element {
             title="Simulation Environments"
             description="Master Gazebo, Unity, and NVIDIA Isaac Sim for robotics simulation. Build and test robots in virtual environments."
             lessonCount={3}
-            href="/docs/book/chapters/module-2-simulation/"
+            href="/docs/book/module-2-simulation/"
             topics={['Gazebo', 'Unity', 'Isaac Sim', 'Physics']}
           />
 
@@ -67,7 +67,7 @@ export default function Home(): JSX.Element {
             title="Sensors & AI Integration"
             description="Integrate LiDAR, cameras, and IMU sensors with Vision-Language-Action models for intelligent robotics."
             lessonCount={2}
-            href="/docs/book/chapters/module-3-sensors/"
+            href="/docs/book/module-3-sensors/"
             topics={['LiDAR', 'Computer Vision', 'VLA Models', 'Perception']}
           />
 
@@ -76,7 +76,7 @@ export default function Home(): JSX.Element {
             title="Advanced Humanoid Robotics"
             description="Explore conversational AI, locomotion algorithms, inverse kinematics, and capstone integration projects."
             lessonCount={4}
-            href="/docs/book/chapters/module-4-advanced/"
+            href="/docs/book/module-4-advanced/"
             topics={['Conversational AI', 'Locomotion', 'IK/Dynamics', 'Capstone']}
           />
         </section>

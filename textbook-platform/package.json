@@ -21,10 +21,14 @@
     "@docusaurus/core": "3.9.2",
     "@docusaurus/preset-classic": "3.9.2",
     "@mdx-js/react": "^3.0.0",
+    "axios": "^1.13.2",
     "clsx": "^2.0.0",
+    "i18next": "^25.7.3",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-i18next": "^16.5.0",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@axe-core/cli": "^4.11.0",

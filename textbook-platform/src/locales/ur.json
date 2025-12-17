@@ -1,0 +1,32 @@
+{
+  "chatWidget": {
+    "title": "سوال پوچھیں",
+    "inputPlaceholder": "کتاب کے بارے میں اپنا سوال ٹائپ کریں...",
+    "send": "بھیجیں",
+    "sending": "بھیج رہے ہیں...",
+    "openChat": "چیٹ کھولیں",
+    "close": "بند کریں",
+    "askChatbot": "چیٹ بوٹ سے پوچھیں",
+    "toggleLanguage": "زبان تبدیل کریں",
+    "signin": "سائن ان",
+    "signup": "سائن اپ",
+    "logout": "لاگ آؤٹ",
+    "resetPersonalization": "ذاتی ترتیبات ری سیٹ کریں"
+  },
+  "auth": {
+    "email": "ای میل",
+    "password": "پاس ورڈ",
+    "signup": "سائن اپ",
+    "signin": "سائن ان",
+    "signingUp": "سائن اپ ہو رہا ہے...",
+    "signingIn": "سائن ان ہو رہا ہے...",
+    "alreadyHaveAccount": "پہلے سے اکاؤنٹ ہے؟",
+    "noAccount": "اکاؤنٹ نہیں ہے؟",
+    "passwordRequirements": "کم از کم 8 حروف بڑے، چھوٹے اور نمبر کے ساتھ",
+    "forgotPassword": "پاس ورڈ بھول گئے؟"
+  },
+  "personalization": {
+    "personalizeForChapter": "اس باب کے لیے ذاتی نوعیت",
+    "personalizationActive": "ذاتی نوعیت فعال"
+  }
+}

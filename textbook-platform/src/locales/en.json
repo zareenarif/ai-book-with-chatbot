@@ -1,0 +1,32 @@
+{
+  "chatWidget": {
+    "title": "Ask a Question",
+    "inputPlaceholder": "Type your question about the textbook...",
+    "send": "Send",
+    "sending": "Sending...",
+    "openChat": "Open Chat",
+    "close": "Close",
+    "askChatbot": "Ask Chatbot",
+    "toggleLanguage": "Toggle Language",
+    "signin": "Sign In",
+    "signup": "Sign Up",
+    "logout": "Log Out",
+    "resetPersonalization": "Reset Personalization"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "signup": "Sign Up",
+    "signin": "Sign In",
+    "signingUp": "Signing up...",
+    "signingIn": "Signing in...",
+    "alreadyHaveAccount": "Already have an account?",
+    "noAccount": "Don't have an account?",
+    "passwordRequirements": "At least 8 characters with uppercase, lowercase, and digit",
+    "forgotPassword": "Forgot Password?"
+  },
+  "personalization": {
+    "personalizeForChapter": "Personalize for this Chapter",
+    "personalizationActive": "Personalization Active"
+  }
+}

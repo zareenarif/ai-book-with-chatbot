@@ -18,7 +18,7 @@ const config: Config = {
   url: 'https://zareenarif.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/ai-book/',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -86,19 +86,19 @@ const config: Config = {
           items: [
             {
               label: 'Module 1: ROS 2 Foundations',
-              to: '/docs/book/chapters/module-1-ros2/',
+              to: '/docs/book/module-1-ros2/',
             },
             {
               label: 'Module 2: Simulation',
-              to: '/docs/book/chapters/module-2-simulation/',
+              to: '/docs/book/module-2-simulation/',
             },
             {
               label: 'Module 3: Sensors & Perception',
-              to: '/docs/book/chapters/module-3-sensors/',
+              to: '/docs/book/module-3-sensors/',
             },
             {
               label: 'Module 4: Advanced Topics',
-              to: '/docs/book/chapters/module-4-advanced/',
+              to: '/docs/book/module-4-advanced/',
             },
           ],
         },

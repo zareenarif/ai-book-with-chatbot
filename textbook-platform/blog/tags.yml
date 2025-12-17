@@ -1,19 +1,69 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
+physical-ai:
+  label: Physical AI
+  permalink: /physical-ai
+  description: Articles about Physical AI and embodied intelligence
 
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
+robotics:
+  label: Robotics
+  permalink: /robotics
+  description: Robotics tutorials and best practices
 
-docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurus tag description
+ros2:
+  label: ROS 2
+  permalink: /ros2
+  description: Robot Operating System 2 tutorials and guides
 
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
+simulation:
+  label: Simulation
+  permalink: /simulation
+  description: Robot simulation with Gazebo, Isaac Sim, and other platforms
+
+gazebo:
+  label: Gazebo
+  permalink: /gazebo
+  description: Gazebo simulation tutorials
+
+humanoid:
+  label: Humanoid Robotics
+  permalink: /humanoid
+  description: Humanoid robot design, control, and simulation
+
+vla:
+  label: VLA Models
+  permalink: /vla
+  description: Vision-Language-Action models for robotics
+
+machine-learning:
+  label: Machine Learning
+  permalink: /machine-learning
+  description: ML and AI techniques for robotics
+
+tutorial:
+  label: Tutorial
+  permalink: /tutorial
+  description: Step-by-step tutorials and guides
+
+beginner:
+  label: Beginner
+  permalink: /beginner
+  description: Beginner-friendly content
+
+introduction:
+  label: Introduction
+  permalink: /introduction
+  description: Introduction to key concepts
+
+embodied-ai:
+  label: Embodied AI
+  permalink: /embodied-ai
+  description: AI systems that interact with the physical world
+
+middleware:
+  label: Middleware
+  permalink: /middleware
+  description: Robotics middleware and communication frameworks
+
+ai:
+  label: AI
+  permalink: /ai
+  description: Artificial Intelligence in robotics

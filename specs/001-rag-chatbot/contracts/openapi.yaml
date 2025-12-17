@@ -1,0 +1,604 @@
+openapi: 3.0.3
+info:
+  title: RAG Chatbot API
+  description: Backend API for RAG Chatbot integrated with Physical AI & Humanoid Robotics Textbook
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@example.com
+
+servers:
+  - url: https://api.example.com/v1
+    description: Production server (Render)
+  - url: http://localhost:8000/v1
+    description: Local development server
+
+tags:
+  - name: chat
+    description: Chat and search operations
+  - name: auth
+    description: Authentication and user management
+  - name: admin
+    description: Administrative operations (embedding, indexing)
+
+paths:
+  /chat:
+    post:
+      tags: [chat]
+      summary: Send a chat message and receive AI response
+      operationId: sendChatMessage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatMessageRequest'
+      responses:
+        '200':
+          description: Successful response with AI-generated answer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatMessageResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /search:
+    post:
+      tags: [chat]
+      summary: Perform semantic search over book content
+      operationId: searchBookContent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Search results with relevant book sections
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+
+  /history:
+    get:
+      tags: [chat]
+      summary: Retrieve chat history for authenticated user
+      operationId: getChatHistory
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: per_page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+      responses:
+        '200':
+          description: Chat history with pagination
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatHistoryResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /auth/signup:
+    post:
+      tags: [auth]
+      summary: Create new user account
+      operationId: signupUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+      responses:
+        '201':
+          description: User created successfully, verification email sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          description: Email already registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /auth/signin:
+    post:
+      tags: [auth]
+      summary: Authenticate user and receive access token
+      operationId: signinUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+
+  /auth/verify:
+    get:
+      tags: [auth]
+      summary: Verify user email with token
+      operationId: verifyEmail
+      parameters:
+        - name: token
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Email verified successfully
+        '400':
+          description: Invalid or expired token
+
+  /auth/reset-password-request:
+    post:
+      tags: [auth]
+      summary: Request password reset email
+      operationId: requestPasswordReset
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email]
+              properties:
+                email:
+                  type: string
+                  format: email
+      responses:
+        '200':
+          description: Password reset email sent (if email exists)
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+
+  /auth/reset-password:
+    post:
+      tags: [auth]
+      summary: Reset password with token
+      operationId: resetPassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [token, new_password]
+              properties:
+                token:
+                  type: string
+                new_password:
+                  type: string
+                  minLength: 8
+      responses:
+        '200':
+          description: Password reset successful
+        '400':
+          description: Invalid or expired token
+
+  /auth/preferences:
+    put:
+      tags: [auth]
+      summary: Update user preferences (language, personalization)
+      operationId: updatePreferences
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPreferences'
+      responses:
+        '200':
+          description: Preferences updated successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /embed:
+    post:
+      tags: [admin]
+      summary: Trigger embedding generation for book content
+      operationId: embedContent
+      security:
+        - AdminAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmbedRequest'
+      responses:
+        '200':
+          description: Embedding job started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbedResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+
+  /health:
+    get:
+      tags: [admin]
+      summary: Health check endpoint
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+                  timestamp:
+                    type: string
+                    format: date-time
+
+components:
+  schemas:
+    ChatMessageRequest:
+      type: object
+      required: [message]
+      properties:
+        message:
+          type: string
+          minLength: 1
+          maxLength: 5000
+          example: "What is a ROS 2 node?"
+        user_id:
+          type: integer
+          nullable: true
+          example: 123
+        session_id:
+          type: string
+          format: uuid
+          nullable: true
+          example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+        highlighted_text:
+          type: string
+          nullable: true
+          maxLength: 500
+          example: "inverse kinematics"
+
+    ChatMessageResponse:
+      type: object
+      required: [message, role, sources, timestamp]
+      properties:
+        message:
+          type: string
+          example: "A ROS 2 node is a participant in the ROS graph that uses a client library to communicate with other nodes."
+        role:
+          type: string
+          enum: [assistant]
+          example: "assistant"
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatSource'
+        timestamp:
+          type: string
+          format: date-time
+
+    ChatSource:
+      type: object
+      required: [chapter, section, url, score]
+      properties:
+        chapter:
+          type: string
+          example: "Chapter 3"
+        section:
+          type: string
+          example: "ROS 2 Architecture"
+        url:
+          type: string
+          format: uri
+          example: "/docs/chapter-3/ros2-architecture"
+        score:
+          type: number
+          format: float
+          example: 0.89
+
+    SearchRequest:
+      type: object
+      required: [query]
+      properties:
+        query:
+          type: string
+          minLength: 1
+          maxLength: 500
+          example: "What is inverse kinematics?"
+        top_k:
+          type: integer
+          minimum: 1
+          maximum: 20
+          default: 5
+        preferred_chapter:
+          type: string
+          nullable: true
+          example: "Chapter 5"
+
+    SearchResponse:
+      type: object
+      required: [results, query]
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResult'
+        query:
+          type: string
+          example: "What is inverse kinematics?"
+
+    SearchResult:
+      type: object
+      required: [chapter, section, content, url, score]
+      properties:
+        chapter:
+          type: string
+          example: "Chapter 5"
+        section:
+          type: string
+          example: "Inverse Kinematics"
+        content:
+          type: string
+          example: "Inverse kinematics (IK) is the process of determining joint angles..."
+        url:
+          type: string
+          format: uri
+          example: "/docs/chapter-5/inverse-kinematics"
+        score:
+          type: number
+          format: float
+          example: 0.92
+
+    ChatHistoryResponse:
+      type: object
+      required: [messages, total_count, page, per_page]
+      properties:
+        messages:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              message:
+                type: string
+              role:
+                type: string
+                enum: [user, assistant]
+              sources:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChatSource'
+              created_at:
+                type: string
+                format: date-time
+        total_count:
+          type: integer
+          example: 127
+        page:
+          type: integer
+          example: 1
+        per_page:
+          type: integer
+          example: 50
+
+    UserCreate:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+          example: "student@example.com"
+        password:
+          type: string
+          format: password
+          minLength: 8
+          pattern: '^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])'
+          example: "SecurePass123!"
+
+    UserLogin:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+
+    UserResponse:
+      type: object
+      required: [id, email, created_at, language_pref]
+      properties:
+        id:
+          type: integer
+          example: 123
+        email:
+          type: string
+          format: email
+          example: "student@example.com"
+        created_at:
+          type: string
+          format: date-time
+        language_pref:
+          type: string
+          enum: [en, ur]
+          example: "en"
+        preferred_chapter:
+          type: string
+          nullable: true
+          example: "Chapter 5"
+
+    AuthResponse:
+      type: object
+      required: [access_token, token_type, user]
+      properties:
+        access_token:
+          type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        token_type:
+          type: string
+          example: "bearer"
+        expires_in:
+          type: integer
+          example: 900
+          description: Token expiration in seconds (15 minutes)
+        user:
+          $ref: '#/components/schemas/UserResponse'
+
+    UserPreferences:
+      type: object
+      properties:
+        language_pref:
+          type: string
+          enum: [en, ur]
+          nullable: true
+        preferred_chapter:
+          type: string
+          nullable: true
+
+    EmbedRequest:
+      type: object
+      required: [content_chunks]
+      properties:
+        content_chunks:
+          type: array
+          items:
+            type: object
+            required: [chapter, section, content, url]
+            properties:
+              chapter:
+                type: string
+              section:
+                type: string
+              content:
+                type: string
+              url:
+                type: string
+
+    EmbedResponse:
+      type: object
+      required: [success, indexed_count, failed_count]
+      properties:
+        success:
+          type: boolean
+        indexed_count:
+          type: integer
+          example: 485
+        failed_count:
+          type: integer
+          example: 2
+        errors:
+          type: array
+          items:
+            type: string
+
+    Error:
+      type: object
+      required: [error, message]
+      properties:
+        error:
+          type: string
+          example: "ValidationError"
+        message:
+          type: string
+          example: "Password must be at least 8 characters"
+        details:
+          type: object
+          nullable: true
+
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    Unauthorized:
+      description: Authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    RateLimitExceeded:
+      description: Too many requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT access token for authenticated users
+
+    AdminAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT access token with admin privileges
+
+security: []

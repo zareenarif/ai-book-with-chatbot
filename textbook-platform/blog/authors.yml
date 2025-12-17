@@ -1,25 +1,20 @@
-yangshun:
-  name: Yangshun Tay
-  title: Ex-Meta Staff Engineer, Co-founder GreatFrontEnd
-  url: https://linkedin.com/in/yangshun
-  image_url: https://github.com/yangshun.png
+physical-ai-team:
+  name: Physical AI Team
+  title: Robotics Education & Research
+  url: https://github.com/DC/hackathon-claude
+  image_url: https://avatars.githubusercontent.com/u/1?v=4
   page: true
-  socials:
-    x: yangshunz
-    linkedin: yangshun
-    github: yangshun
-    newsletter: https://www.greatfrontend.com
 
-slorber:
-  name: Sébastien Lorber
-  title: Docusaurus maintainer
-  url: https://sebastienlorber.com
-  image_url: https://github.com/slorber.png
-  page:
-    # customize the url of the author page at /blog/authors/<permalink>
-    permalink: '/all-sebastien-lorber-articles'
+dr_robotics:
+  name: Dr. Alex Chen
+  title: Robotics Researcher & Educator
+  url: https://github.com/DC
+  image_url: https://avatars.githubusercontent.com/u/2?v=4
   socials:
-    x: sebastienlorber
-    linkedin: sebastienlorber
-    github: slorber
-    newsletter: https://thisweekinreact.com
+    github: dc
+
+ros2_expert:
+  name: Sarah Martinez
+  title: ROS 2 Developer & Instructor
+  url: https://github.com/DC
+  image_url: https://avatars.githubusercontent.com/u/3?v=4
